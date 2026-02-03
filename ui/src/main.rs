@@ -6,7 +6,7 @@ use druid::{
     WindowDesc,
 };
 use std::sync::Arc;
-use std::ops::{Deref, Range};
+use std::ops::{Range,Deref};
 use std::u64;
 
 use gigatrace::trace::Ns;
@@ -156,7 +156,7 @@ impl Widget<Arc<Trace>> for TimelineWidget {
         // Text is easy; in real use TextLayout should be stored in the widget
         // and reused.
         let text_color = Color::rgb8(0xFF, 0x00, 0x00);
-        let mut layout = TextLayout::new("Gigatrace!");
+        let mut layout = TextLayout::<String>::from_text("Gigatrace!");
         layout.set_font(FontDescriptor::new(FontFamily::SYSTEM_UI).with_size(12.0));
         layout.set_text_color(text_color);
         layout.rebuild_if_needed(ctx.text(), env);
@@ -171,11 +171,11 @@ pub fn main() {
         view_range: trace.time_bounds().unwrap_or(0..1000)
     };
 
-    let window = WindowDesc::new(move || timeline).title(
+    let window = WindowDesc::new(timeline).title(
         LocalizedString::new("gigatrace-window-title").with_placeholder("Gigatrace"),
     );
     AppLauncher::with_window(window)
-        .use_simple_logger()
+        .log_to_console()
         .launch(Arc::new(trace))
         .expect("launch failed");
 }
