@@ -1,5 +1,5 @@
 use druid::kurbo::{Size};
-use druid::piet::{FontFamily, ImageFormat, InterpolationMode};
+use druid::piet::FontFamily;
 use druid::widget::prelude::*;
 use druid::{
     Affine, AppLauncher, Color, FontDescriptor, LocalizedString, Point, Rect, TextLayout,
@@ -10,7 +10,6 @@ use std::ops::{Range,Deref};
 use std::u64;
 
 use gigatrace::trace::Ns;
-use gigatrace::index::LongestEvent;
 use gigatrace::{Trace, TrackInfo, self};
 
 struct ViewMap {
@@ -59,7 +58,7 @@ struct TimelineWidget {
 }
 
 impl TimelineWidget {
-    fn paint_track(&self, ctx: &mut PaintCtx, trace: &Trace, env: &Env, track: &TrackInfo, size: Size) {
+    fn paint_track(&self, ctx: &mut PaintCtx, trace: &Trace, _env: &Env, track: &TrackInfo, size: Size) {
         // let rect = Rect::from_origin_size(Point::ORIGIN, size);
         // let fill_color = Color::rgb8(0x77, 0x00, 0x00);
         // ctx.fill(rect, &fill_color);

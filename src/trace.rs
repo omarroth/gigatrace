@@ -1,5 +1,4 @@
 use fastrand::Rng;
-use std::ops::Range;
 
 pub type Ns = u64;
 #[derive(Copy, Clone)]
