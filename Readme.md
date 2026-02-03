@@ -6,3 +6,10 @@ This repo includes:
 - A proof-of-concept Druid UI to demo efficient trace zooming, that isn't remotely useable as a real trace viewer.
 
 It's a tech demo for the data structure described in [this blog post](https://thume.ca/2021/03/14/iforests/)
+
+To build + run:
+
+```bash
+$ cargo +nightly -Z unstable-options -C ui build --release
+$ ./target/release/gigatrace_ui
+```
